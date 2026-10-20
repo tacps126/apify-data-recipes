@@ -8,7 +8,9 @@
 
 Cost: about $0.002 per exhibitor, plus about $0.002 per website where
 contacts are found (sites with nothing found are free).
-Usage: python exhibitor_leads.py "https://ish.messefrankfurt.com/frankfurt/en/exhibitor-search.html" [max]
+Usage: python exhibitor_leads.py <exhibitor-list link or built-in show id> [max per show]
+  e.g. python exhibitor_leads.py "https://ish.messefrankfurt.com/frankfurt/en/exhibitor-search.html"
+       python exhibitor_leads.py sema-show 200        (ids: see the Actor README)
 Use the data within GDPR / CAN-SPAM rules.
 """
 import csv
@@ -19,7 +21,8 @@ from _apify import run
 url = sys.argv[1] if len(sys.argv) > 1 else "https://ish.messefrankfurt.com/frankfurt/en/exhibitor-search.html"
 limit = int(sys.argv[2]) if len(sys.argv) > 2 else 50
 
-exhibitors = run("tacps126~exhibition-scraper", {"startUrls": [{"url": url}], "maxResults": limit})
+show = {"startUrls": [{"url": url}]} if url.startswith("http") else {"exhibitionList": [url]}
+exhibitors = run("tacps126~exhibition-scraper", {**show, "maxResults": limit})
 print(f"{len(exhibitors)} exhibitors from {url}")
 
 # Exhibitors with a website but no email: look the email up on their site.
