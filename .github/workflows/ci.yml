@@ -1,0 +1,19 @@
+name: CI
+# Offline checks only: no Apify token is needed (the recipes are not run here).
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: python -m py_compile recipes/*.py
+      - run: for f in recipes/*.sh; do bash -n "$f"; done
