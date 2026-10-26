@@ -1,8 +1,8 @@
 # apify-data-recipes
 
 Small, copy-paste recipes for common data jobs: hiring signals, news alerts, review
-monitoring, lead enrichment, trade-show leads, Reddit buying-intent leads, Shopify store leads,
-job feeds, research alerts and technology-field comparisons. Each recipe calls a ready-made
+monitoring, lead enrichment, trade-show leads, new-company leads, Shopify store leads, sanctions
+screening, recall alerts, YouTube transcripts, job feeds, research alerts and technology-field comparisons. Each recipe calls a ready-made
 [Apify](https://apify.com) Actor and prints or saves clean JSON/CSV.
 
 You need a free Apify account. Put your API token in `APIFY_TOKEN` (Console →
@@ -15,11 +15,14 @@ Settings → API & Integrations). Pricing is per result; every recipe states the
 | [contacts_from_websites.py](recipes/contacts_from_websites.py) | Emails, phones and social links from a list of websites | [Website Contact Details](https://apify.com/tacps126/contact-details) |
 | [jobs_feed.py](recipes/jobs_feed.py) | One normalized job feed from career pages or company names (13 job-board systems) | [Job Board Harvester](https://apify.com/tacps126/jobs-harvester) |
 | [remote_jobs_feed.py](recipes/remote_jobs_feed.py) | Remote jobs open to your countries from company sites and remote-job feeds → CSV | [Remote Jobs Scraper](https://apify.com/tacps126/remote-jobs-scraper) |
-| [reddit_leads.py](recipes/reddit_leads.py) | Reddit posts asking for a tool like yours or an alternative to a competitor, tagged by intent → CSV | [Reddit Lead Finder](https://apify.com/tacps126/reddit-lead-finder) |
+| [new_companies.py](recipes/new_companies.py) | Companies registered in the last days (France, Norway, Finland, Estonia, New York, Colorado, Connecticut, Oregon) by industry code → CSV | [Company Registry](https://apify.com/tacps126/company-registry) |
 | [shopify_store_leads.py](recipes/shopify_store_leads.py) | The Shopify stores in a list of websites, with country, catalog and contacts → CSV | [Shopify Store Analyzer](https://apify.com/tacps126/shopify-store-analyzer) |
 | [exhibitor_leads.py](recipes/exhibitor_leads.py) | Exhibitors of any trade show (paste its exhibitor-list link) → CSV with booth and contacts; missing emails found on each company's website | [Trade Show Exhibitor List Scraper](https://apify.com/tacps126/exhibition-scraper) + [Website Contact Details](https://apify.com/tacps126/contact-details) |
 | [research_alerts.py](recipes/research_alerts.py) | New papers, preprints and patents for your topics, merged across OpenAlex, arXiv, PubMed and Europe PMC → CSV (or the most influential, `--influential`) | [Research Radar](https://apify.com/tacps126/research-radar) |
 | [compare_fields.py](recipes/compare_fields.py) | Technology fields ranked by opportunity score, with the reasons, industry share and top companies → CSV | [Innovation Radar](https://apify.com/tacps126/innovation-radar) |
+| [sanctions_check.py](recipes/sanctions_check.py) | A list of customers or suppliers screened against OFAC, UN, EU, UK, Canada and Swiss sanctions lists → CSV with a verdict per name | [Sanctions Screener](https://apify.com/tacps126/sanctions-screener) |
+| [recall_alerts.py](recipes/recall_alerts.py) | Product recalls and safety alerts for your products, brands or ingredients (FDA, CPSC, Canada, UK, EU) → CSV | [Recalls Radar](https://apify.com/tacps126/recalls-radar) |
+| [youtube_transcripts.py](recipes/youtube_transcripts.py) | Transcripts of a video, playlist, channel or search → one text file per video | [YouTube Transcripts](https://apify.com/tacps126/youtube-transcripts) |
 | [negative_reviews.sh](recipes/negative_reviews.sh) | 1–2★ Trustpilot reviews of competitors (curl only) | [Trustpilot Reviews](https://apify.com/tacps126/trustpilot-reviews) |
 
 ```bash
