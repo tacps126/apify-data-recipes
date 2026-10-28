@@ -37,7 +37,10 @@ All recipes use the synchronous endpoint
 results in the same request, up to 5 minutes. For longer runs, start a run and poll it;
 see the [Apify API docs](https://docs.apify.com/api/v2).
 
-## n8n, Make and Zapier
+## n8n, Make, Zapier and Clay
+
+**Ready-made:** importable n8n workflows, Make and Zapier steps, and copy-paste Clay enrichment
+inputs are in [integrations/](integrations/README.md).
 
 The same endpoint works from any automation tool. In n8n: add an **HTTP Request** node with
 `POST https://api.apify.com/v2/acts/<actor>/run-sync-get-dataset-items`, header

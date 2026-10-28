@@ -1,0 +1,188 @@
+{
+  "name": "Weekly hiring signals to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "e3d34153-8fc7-41b3-9b42-b1774ae4b98d",
+      "name": "Every Monday 7:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~hiring-signals/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"companies\": [\n    \"https://boards.greenhouse.io/stripe\",\n    \"https://jobs.lever.co/spotify\",\n    \"https://jobs.ashbyhq.com/ramp\"\n  ],\n  \"roleKeywords\": [\n    \"data\",\n    \"analytics\"\n  ],\n  \"postedWithinDays\": 30,\n  \"onlyChanged\": true,\n  \"monitorName\": \"n8n-weekly\"\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "6b479520-8abf-47c7-8cfc-c9ad0502e96f",
+      "name": "Get hiring signals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5ec45976-5898-4fa3-8db2-8c225e4626dc",
+              "name": "Company",
+              "value": "={{ $json.company }}",
+              "type": "string"
+            },
+            {
+              "id": "cfb9d7c6-50f3-4853-93e8-58d582d06f2e",
+              "name": "Score",
+              "value": "={{ $json.signalScore }}",
+              "type": "number"
+            },
+            {
+              "id": "77a1be7d-5f41-4607-b0cd-f2960c2ac1e9",
+              "name": "Matching roles",
+              "value": "={{ $json.matchingRoles }}",
+              "type": "number"
+            },
+            {
+              "id": "0edfe9af-342e-49cc-bda9-063db48515d2",
+              "name": "New this week",
+              "value": "={{ $json.newMatchingRoles }}",
+              "type": "number"
+            },
+            {
+              "id": "0bc5f95e-e6d2-4c91-a0fc-7f398582abfe",
+              "name": "Newest role",
+              "value": "={{ $json.newestRolePostedAt }}",
+              "type": "string"
+            },
+            {
+              "id": "a7fbe140-ab49-45b2-a700-43f6b8790798",
+              "name": "Week",
+              "value": "={{ $now.toISODate() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "683bdcb4-945d-4608-bb49-4d016c217d9d",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "5f853d64-677d-431f-94f9-a87bd3a8c1b8",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Weekly hiring signals to Google Sheets\n\nEvery Monday: which of your target accounts opened roles you sell to, scored per company.\n\n1. **Get hiring signals** \u2192 Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Put your accounts' career-page links in `companies` and your buyer roles in `roleKeywords`.\n3. **Append to Google Sheet** \u2192 connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 260,
+        "width": 420
+      },
+      "id": "71ae0fdc-47b3-408b-8886-4a14642b2cae",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -320
+      ]
+    }
+  ],
+  "connections": {
+    "Every Monday 7:00": {
+      "main": [
+        [
+          {
+            "node": "Get hiring signals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get hiring signals": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

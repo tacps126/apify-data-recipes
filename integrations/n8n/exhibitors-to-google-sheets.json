@@ -1,0 +1,188 @@
+{
+  "name": "Trade-show exhibitors to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e786035b-d6bc-4ad6-8835-b54cc49a5226",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~exhibition-scraper/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"exhibitionList\": [\n    \"automechanika-dubai\"\n  ],\n  \"maxResults\": 200,\n  \"includeDetails\": true\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "3eaf1c86-8d6c-4721-806f-8cf5a1fa1a80",
+      "name": "Get exhibitors",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98790078-51d6-480a-8c8d-a98fef5c32c7",
+              "name": "Company",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "90bbfcef-2271-470b-b59d-a6f58bdd6beb",
+              "name": "Booth",
+              "value": "={{ $json.booth }}",
+              "type": "string"
+            },
+            {
+              "id": "5b2fa07f-b10e-4b07-bf98-ea84cef36b16",
+              "name": "Show",
+              "value": "={{ $json.exhibition }}",
+              "type": "string"
+            },
+            {
+              "id": "c104d89e-b688-4bf0-b769-e2fbb481289f",
+              "name": "Email",
+              "value": "={{ $json.contact?.email }}",
+              "type": "string"
+            },
+            {
+              "id": "943aacfc-4224-4911-968b-c0cd3b616ba1",
+              "name": "Phone",
+              "value": "={{ $json.contact?.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "1e21cdf0-5d1d-47ca-a0a2-9a53e5a0e6c1",
+              "name": "Website",
+              "value": "={{ $json.contact?.website }}",
+              "type": "string"
+            },
+            {
+              "id": "2494fad3-94b6-4c92-a048-982d54d76a75",
+              "name": "City",
+              "value": "={{ $json.address?.city }}",
+              "type": "string"
+            },
+            {
+              "id": "c6053270-0e99-4b00-bfd9-9a3fa0cea0b9",
+              "name": "Country",
+              "value": "={{ $json.address?.country }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0544b090-9ecd-43be-8fa6-4bcc0698d273",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "7abe1cfc-189c-49a7-a744-5956c5371982",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Trade-show exhibitors to Google Sheets\n\n1. **Get exhibitors** \u2192 Credential: *Header Auth*, name `Authorization`, value `Bearer <your Apify token>` (Apify Console \u2192 Settings \u2192 API & Integrations).\n2. Change `exhibitionList` to your show id, or use `\"startUrls\": [{\"url\": \"<exhibitor list link>\"}]`.\n3. **Append to Google Sheet** \u2192 connect Google, paste your sheet URL.\n4. Execute. One row per exhibitor.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 260,
+        "width": 420
+      },
+      "id": "48fb7629-8b79-416a-b674-931b2a49b375",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -320
+      ]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Get exhibitors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get exhibitors": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
