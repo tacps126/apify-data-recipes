@@ -2,8 +2,8 @@
 
 Small, copy-paste recipes for common data jobs: hiring signals, news alerts, review
 monitoring, lead enrichment, trade-show leads, Reddit buying-intent leads, new-company leads, Shopify store leads, sanctions
-screening, recall alerts, YouTube transcripts, job feeds, research alerts, technology-field comparisons, prediction-market movers
-and closing betting lines. Each recipe calls a ready-made
+screening, recall alerts, YouTube transcripts, job feeds, research alerts, technology-field comparisons, prediction-market movers,
+closing betting lines, startup funding leads, podcast outreach and property auction deals. Each recipe calls a ready-made
 [Apify](https://apify.com) Actor and prints or saves clean JSON/CSV.
 
 You need a free Apify account. Put your API token in `APIFY_TOKEN` (Console > 
@@ -27,6 +27,9 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [youtube_transcripts.py](recipes/youtube_transcripts.py) | Transcripts of a video, playlist, channel or search > one text file per video | [YouTube Transcripts](https://apify.com/tacps126/youtube-transcripts) |
 | [market_movers.py](recipes/market_movers.py) | Kalshi and Polymarket markets that moved most in 24 hours > CSV | [Prediction Markets](https://apify.com/tacps126/prediction-markets) |
 | [closing_lines.py](recipes/closing_lines.py) | Last week's closing spread, total and moneyline with cover and over/under results > CSV for backtests | [Sports Data](https://apify.com/tacps126/sports-data) |
+| [funding_leads.py](recipes/funding_leads.py) | Companies that just raised money (SEC Form D) in your states, with founders and executives > CSV | [Startup Funding Rounds](https://apify.com/tacps126/startup-funding) |
+| [podcast_outreach.py](recipes/podcast_outreach.py) | Active podcasts in your niche with the owner's email, for guest pitches and sponsorships > CSV | [Podcast Scraper](https://apify.com/tacps126/podcasts) |
+| [auction_deals.py](recipes/auction_deals.py) | Court, bank and government property auctions near a place, scored against similar lots and your budget > CSV | [Auctions Radar](https://apify.com/tacps126/auctions-radar) |
 | [negative_reviews.sh](recipes/negative_reviews.sh) | 1-2★ Trustpilot reviews of competitors (curl only) | [Trustpilot Reviews](https://apify.com/tacps126/trustpilot-reviews) |
 
 ```bash
