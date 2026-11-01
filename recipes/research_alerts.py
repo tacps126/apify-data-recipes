@@ -1,4 +1,4 @@
-"""New papers, preprints and patents for your topics → research.csv (merged across sources).
+"""New papers, preprints and patents for your topics > research.csv (merged across sources).
 
 Run it daily or weekly with only_new on: each run returns only what earlier runs didn't.
 Cost: about $0.003 per result.
@@ -61,4 +61,4 @@ with open("research.csv", "w", newline="") as f:
                 r.get("pdfUrl"),
             ]
         )
-print(f"{len(items)} results → research.csv")
+print(f"{len(items)} results > research.csv")

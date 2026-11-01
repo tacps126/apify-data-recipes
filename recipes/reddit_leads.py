@@ -1,5 +1,5 @@
 """Reddit posts from people ready to buy (asking for a tool, leaving a competitor,
-comparing options, complaining) → leads.csv, newest first.
+comparing options, complaining) > leads.csv, newest first.
 
 Cost: about $0.002 per lead plus $0.0001 per post read (a run like this: a few cents).
 Usage: python reddit_leads.py "CRM" "HubSpot,Pipedrive"
@@ -43,4 +43,4 @@ with open("leads.csv", "w", newline="") as f:
                 x.get("url"),
             ]
         )
-print(f"{len(leads)} leads → leads.csv")
+print(f"{len(leads)} leads > leads.csv")

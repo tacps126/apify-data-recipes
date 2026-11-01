@@ -1,5 +1,5 @@
 """Remote jobs open to your countries, from company career sites and the Remote OK,
-Jobicy, Working Nomads and Himalayas feeds → remote_jobs.csv. Schedule it daily with
+Jobicy, Working Nomads and Himalayas feeds > remote_jobs.csv. Schedule it daily with
 "onlyNew": true to get only new postings.
 
 Cost: about $0.002 per job.
@@ -43,4 +43,4 @@ with open("remote_jobs.csv", "w", newline="") as f:
                 j.get("url"),
             ]
         )
-print(f"{len(jobs)} remote jobs → remote_jobs.csv")
+print(f"{len(jobs)} remote jobs > remote_jobs.csv")

@@ -1,5 +1,5 @@
 """Screen a list of customers or suppliers against official sanctions lists (OFAC, UN, EU,
-UK, Canada, Switzerland) → screening.csv with a verdict per name. A screening aid, not legal advice.
+UK, Canada, Switzerland) > screening.csv with a verdict per name. A screening aid, not legal advice.
 
 Cost: about $0.003 per name.
 Usage: python sanctions_check.py names.txt        (one person or company per line)
@@ -38,4 +38,4 @@ with open("screening.csv", "w", newline="") as f:
             ]
         )
 flagged = sum(r.get("status") != "no-match" for r in results)
-print(f"{len(results)} names screened, {flagged} to review → screening.csv")
+print(f"{len(results)} names screened, {flagged} to review > screening.csv")

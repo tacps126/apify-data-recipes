@@ -47,7 +47,7 @@ with open("fields.csv", "w", newline="") as f:
             ]
         )
         print(
-            f"{r.get('rank') or '-'}. {r.get('field')}: {s.get('opportunity')}/100 — "
+            f"{r.get('rank') or '-'}. {r.get('field')}: {s.get('opportunity')}/100 - "
             f"{'; '.join(s.get('why', [])[:2])}"
         )
-print("→ fields.csv")
+print(" > fields.csv")

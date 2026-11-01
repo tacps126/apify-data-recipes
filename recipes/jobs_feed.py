@@ -1,4 +1,4 @@
-"""One normalized job feed from several companies → jobs.csv. Give career-page links
+"""One normalized job feed from several companies > jobs.csv. Give career-page links
 (the company's own careers page or its job board) or just company names.
 
 Cost: about $0.001 per job.
@@ -40,4 +40,4 @@ with open("jobs.csv", "w", newline="") as f:
                 j.get("url"),
             ]
         )
-print(f"{len(jobs)} jobs → jobs.csv")
+print(f"{len(jobs)} jobs > jobs.csv")

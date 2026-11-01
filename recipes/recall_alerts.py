@@ -1,5 +1,5 @@
 """Product recalls and safety alerts for your keywords (products, brands, ingredients) from
-FDA, CPSC, Health Canada, UK FSA/OPSS and the EU Safety Gate → recalls.csv.
+FDA, CPSC, Health Canada, UK FSA/OPSS and the EU Safety Gate > recalls.csv.
 
 Cost: about $0.002 per recall.
 Usage: python recall_alerts.py "peanut,lithium battery" 30      (keywords, days back)
@@ -33,4 +33,4 @@ with open("recalls.csv", "w", newline="") as f:
                 r.get("url"),
             ]
         )
-print(f"{len(recalls)} recalls in the last {days} days → recalls.csv")
+print(f"{len(recalls)} recalls in the last {days} days > recalls.csv")

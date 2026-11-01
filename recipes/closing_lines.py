@@ -1,5 +1,5 @@
 """Closing betting lines and how they settled (who covered, over or under, did the favourite
-win) for last week's games → closing_lines.csv. A ready table for backtesting models.
+win) for last week's games > closing_lines.csv. A ready table for backtesting models.
 
 Cost: about $0.003 per game line.
 Usage: python closing_lines.py nfl,ncaaf 7      (leagues, days back)
@@ -34,4 +34,4 @@ with open("closing_lines.csv", "w", newline="") as f:
     w.writeheader()
     for line in lines:
         w.writerow({**line, "date": (line.get("date") or "")[:10]})
-print(f"{len(lines)} closing lines from the last {days} days → closing_lines.csv")
+print(f"{len(lines)} closing lines from the last {days} days > closing_lines.csv")

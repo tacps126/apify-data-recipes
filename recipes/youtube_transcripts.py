@@ -1,4 +1,4 @@
-"""Transcripts of YouTube videos, a playlist, a channel or a search → one .txt file per video
+"""Transcripts of YouTube videos, a playlist, a channel or a search > one .txt file per video
 in ./transcripts, ready for summaries, notes or a RAG index.
 
 Cost: about $0.0025 per transcript (videos without captions are free).
@@ -28,4 +28,4 @@ out.mkdir(exist_ok=True)
 for v in videos:
     header = f"{v.get('title')}\n{v.get('channel')} · {v.get('publishedAt')} · {v.get('url')}\n\n"
     (out / f"{v.get('videoId')}.txt").write_text(header + (v.get("transcript") or ""))
-print(f"{len(videos)} transcripts → {out}/")
+print(f"{len(videos)} transcripts > {out}/")

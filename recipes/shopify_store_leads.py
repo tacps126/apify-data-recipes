@@ -1,5 +1,5 @@
-"""A list of websites → the Shopify stores among them with country, currency, product
-count, price range and contact details → stores.csv. Non-Shopify sites are skipped free.
+"""A list of websites > the Shopify stores among them with country, currency, product
+count, price range and contact details > stores.csv. Non-Shopify sites are skipped free.
 
 Cost: about $0.004 per Shopify store.
 Usage: python shopify_store_leads.py sites.txt        (one domain or URL per line)
@@ -59,4 +59,4 @@ with open("stores.csv", "w", newline="") as f:
                 s.get("instagram"),
             ]
         )
-print(f"{len(stores)} Shopify stores (of {len(sites)} sites) → stores.csv")
+print(f"{len(stores)} Shopify stores (of {len(sites)} sites) > stores.csv")

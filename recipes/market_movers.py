@@ -1,5 +1,5 @@
 """Prediction markets that moved the most in the last 24 hours on Kalshi and Polymarket, with
-probability, change and volume → movers.csv. Run it hourly or daily for a news-signal feed.
+probability, change and volume > movers.csv. Run it hourly or daily for a news-signal feed.
 
 Cost: about $0.003 per market.
 Usage: python market_movers.py "politics,economics" 10000      (categories, minimum 24h volume)
@@ -42,4 +42,4 @@ with open("movers.csv", "w", newline="") as f:
                 m.get("url"),
             ]
         )
-print(f"{len(markets)} markets, biggest 24h moves first → movers.csv")
+print(f"{len(markets)} markets, biggest 24h moves first > movers.csv")

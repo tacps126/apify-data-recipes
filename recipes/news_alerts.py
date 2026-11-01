@@ -1,4 +1,4 @@
-"""Google News articles for a query → news.csv, with the publisher's real URL.
+"""Google News articles for a query > news.csv, with the publisher's real URL.
 
 Cost: about $0.002 per article.
 Usage: python news_alerts.py "generative AI" [timeframe: 1h|1d|7d]
@@ -20,4 +20,4 @@ with open("news.csv", "w", newline="") as f:
     w.writerow(["publishedAt", "publisher", "title", "url"])
     for a in articles:
         w.writerow([a.get("publishedAt"), a.get("publisher"), a.get("title"), a.get("url")])
-print(f"{len(articles)} articles → news.csv")
+print(f"{len(articles)} articles > news.csv")

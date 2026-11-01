@@ -1,4 +1,4 @@
-"""Companies registered in the last N days in official registers → companies.csv.
+"""Companies registered in the last N days in official registers > companies.csv.
 A daily lead list for anyone selling to new businesses (banking, accounting, insurance, web).
 
 Cost: about $0.0025 per company.
@@ -43,4 +43,4 @@ with open("companies.csv", "w", newline="") as f:
                 c.get("url"),
             ]
         )
-print(f"{len(companies)} new companies in {country} (last {days} days) → companies.csv")
+print(f"{len(companies)} new companies in {country} (last {days} days) > companies.csv")

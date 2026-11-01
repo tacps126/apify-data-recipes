@@ -1,4 +1,4 @@
-"""Trade-show lead list: exhibitors of any show → exhibitor_leads.csv.
+"""Trade-show lead list: exhibitors of any show > exhibitor_leads.csv.
 
 1. Scrapes the exhibitor list of the show behind a link (any Messe Frankfurt,
    Messe Düsseldorf, Swapcard or Corussoft show, or a built-in one).
@@ -82,4 +82,4 @@ with open("exhibitor_leads.csv", "w", newline="") as f:
                 e.get("exhibitionUrl"),
             ]
         )
-print("→ exhibitor_leads.csv")
+print(" > exhibitor_leads.csv")
