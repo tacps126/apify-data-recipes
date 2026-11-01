@@ -131,7 +131,7 @@
     },
     {
       "parameters": {
-        "content": "## Weekly hiring signals to Google Sheets\n\nEvery Monday: which of your target accounts opened roles you sell to, scored per company.\n\n1. **Get hiring signals** \u2192 Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Put your accounts' career-page links in `companies` and your buyer roles in `roleKeywords`.\n3. **Append to Google Sheet** \u2192 connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "content": "## Weekly hiring signals to Google Sheets\n\nEvery Monday: which of your target accounts opened roles you sell to, scored per company.\n\n1. **Get hiring signals** > Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Put your accounts' career-page links in `companies` and your buyer roles in `roleKeywords`.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
         "height": 260,
         "width": 420
       },

@@ -131,7 +131,7 @@
     },
     {
       "parameters": {
-        "content": "## Trade-show exhibitors to Google Sheets\n\n1. **Get exhibitors** \u2192 Credential: *Header Auth*, name `Authorization`, value `Bearer <your Apify token>` (Apify Console \u2192 Settings \u2192 API & Integrations).\n2. Change `exhibitionList` to your show id, or use `\"startUrls\": [{\"url\": \"<exhibitor list link>\"}]`.\n3. **Append to Google Sheet** \u2192 connect Google, paste your sheet URL.\n4. Execute. One row per exhibitor.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "content": "## Trade-show exhibitors to Google Sheets\n\n1. **Get exhibitors** > Credential: *Header Auth*, name `Authorization`, value `Bearer <your Apify token>` (Apify Console > Settings > API & Integrations).\n2. Change `exhibitionList` to your show id, or use `\"startUrls\": [{\"url\": \"<exhibitor list link>\"}]`.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Execute. One row per exhibitor.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
         "height": 260,
         "width": 420
       },
