@@ -1,0 +1,188 @@
+{
+  "name": "Weekly sanctions screening to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "name": "Every Monday 6:00",
+      "id": "445f98b7-73c3-472c-9405-4b2550c9a04b",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~sanctions-screener/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"mode\": \"screen\",\n  \"names\": [\n    \"Your customer one\",\n    \"Your supplier two\"\n  ],\n  \"entityType\": \"any\",\n  \"minScore\": 85,\n  \"maxMatches\": 3\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "9e02baaf-9854-45c0-9a1f-1fa64345bc8a",
+      "name": "Run sanctions-screener",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b202f85-4af8-4a5e-9873-028063e33ff2",
+              "name": "Name",
+              "value": "={{ $json.query }}",
+              "type": "string"
+            },
+            {
+              "id": "cafe0142-fca1-4a76-ba94-4f3daf276cdf",
+              "name": "Verdict",
+              "value": "={{ $json.status }}",
+              "type": "string"
+            },
+            {
+              "id": "43608175-d0dc-45d7-a8ff-bec147832868",
+              "name": "Top score",
+              "value": "={{ $json.topScore }}",
+              "type": "number"
+            },
+            {
+              "id": "18b2dae9-504a-4d58-a6bc-31f51c07769b",
+              "name": "Best match",
+              "value": "={{ ($json.matches || [])[0]?.name }}",
+              "type": "string"
+            },
+            {
+              "id": "fd66149d-8485-4e0c-b514-72b0c6a9fe27",
+              "name": "List",
+              "value": "={{ ($json.matches || [])[0]?.list }}",
+              "type": "string"
+            },
+            {
+              "id": "365df95a-3f60-419e-8c7b-575b55c42afc",
+              "name": "Checked",
+              "value": "={{ $now.toISODate() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c31d5474-d7a7-4f86-aa34-5c505972b4f7",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "1f7f2f7d-1acc-428e-8227-beade37ae2aa",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Weekly sanctions screening to Google Sheets\n\nEvery Monday: your customers and suppliers screened again against the OFAC, UN, EU, UK, Canadian and Swiss sanctions lists, one verdict per name.\n\n1. **Run sanctions-screener** > Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Change the JSON body to your own search.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 280,
+        "width": 440
+      },
+      "id": "f7b6a6d2-3d91-4651-85a0-bb5682652c32",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -340
+      ]
+    }
+  ],
+  "connections": {
+    "Every Monday 6:00": {
+      "main": [
+        [
+          {
+            "node": "Run sanctions-screener",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run sanctions-screener": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

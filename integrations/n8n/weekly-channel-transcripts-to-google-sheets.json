@@ -1,0 +1,182 @@
+{
+  "name": "Weekly YouTube channel transcripts to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                5
+              ],
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "name": "Every Friday 9:00",
+      "id": "cf687a81-4a5f-4003-99eb-982ab5e13aed",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~youtube-transcripts/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"videos\": [\n    \"https://www.youtube.com/@YourChannel\"\n  ],\n  \"maxVideosPerSource\": 10,\n  \"languages\": [\n    \"en\"\n  ],\n  \"includeSegments\": false,\n  \"onlyNew\": true,\n  \"monitorName\": \"n8n-channel\"\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "ad2c41d4-e82a-4347-9921-094203c210be",
+      "name": "Run youtube-transcripts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1acfb9a-1630-4714-8b20-b31e8d2bc4af",
+              "name": "Title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "c6c75de5-f8eb-4253-a77e-86b137a3581d",
+              "name": "Published",
+              "value": "={{ $json.publishedAt }}",
+              "type": "string"
+            },
+            {
+              "id": "dc1bd912-aff6-40ad-ad06-b616b0447682",
+              "name": "Words",
+              "value": "={{ $json.wordCount }}",
+              "type": "number"
+            },
+            {
+              "id": "ddfb3d53-c789-43f5-b4e8-6c9594a31688",
+              "name": "Link",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "e4f6307b-2f53-43b3-bf92-d13537eabff5",
+              "name": "Transcript",
+              "value": "={{ ($json.transcript || '').slice(0, 45000) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e335505-0c55-41e5-bd3c-55bd58863f86",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "cf9ad102-3977-48bf-bdf4-618106c976d3",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Weekly YouTube channel transcripts to Google Sheets\n\nEvery Friday: transcripts of the channel's new videos, one row per video, for newsletters, notes or an AI knowledge base.\n\n1. **Run youtube-transcripts** > Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Change the JSON body to your own search.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 280,
+        "width": 440
+      },
+      "id": "34b9ce06-a747-4555-834f-8c8231f4ca03",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -340
+      ]
+    }
+  ],
+  "connections": {
+    "Every Friday 9:00": {
+      "main": [
+        [
+          {
+            "node": "Run youtube-transcripts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run youtube-transcripts": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

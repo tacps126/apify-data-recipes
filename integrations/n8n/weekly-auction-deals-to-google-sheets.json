@@ -1,0 +1,218 @@
+{
+  "name": "Weekly property auction deals to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "name": "Every Monday 7:00",
+      "id": "c9ab6952-ec86-4615-bfd9-c36b50c42f85",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~auctions-radar/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"countries\": [\n    \"IT\"\n  ],\n  \"assetTypes\": [\n    \"apartment\",\n    \"house\"\n  ],\n  \"location\": \"Milano\",\n  \"radiusKm\": 25,\n  \"budgetMax\": 250000,\n  \"profile\": \"bargainHunter\",\n  \"changesOnly\": true,\n  \"monitorName\": \"n8n-auctions\",\n  \"maxItems\": 100\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "9629ee8b-36f4-4d2a-a8c9-e90ea1942f4c",
+      "name": "Run auctions-radar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e0e0205e-f412-4a56-9e57-647fc5df0a75",
+              "name": "Score",
+              "value": "={{ $json.score }}",
+              "type": "number"
+            },
+            {
+              "id": "a76b31d0-10cc-43e4-a6b4-a535093bcd7c",
+              "name": "Verdict",
+              "value": "={{ $json.headline }}",
+              "type": "string"
+            },
+            {
+              "id": "b6f2a797-56ae-4d46-8f3c-c5b5d0ed21b1",
+              "name": "Title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "d179c93a-7662-4361-ad89-d581601b9393",
+              "name": "City",
+              "value": "={{ $json.city }}",
+              "type": "string"
+            },
+            {
+              "id": "9e5564cc-63dc-40c3-9e2d-99869a501cef",
+              "name": "Price",
+              "value": "={{ $json.price }}",
+              "type": "number"
+            },
+            {
+              "id": "8803704b-4b71-4c8b-a3b4-0c9edc95af4e",
+              "name": "Currency",
+              "value": "={{ $json.currency }}",
+              "type": "string"
+            },
+            {
+              "id": "2c35cf59-8175-49fd-a032-db9051b2c004",
+              "name": "Price per m2",
+              "value": "={{ $json.pricePerSqm }}",
+              "type": "number"
+            },
+            {
+              "id": "1ae69d8f-2cb6-4271-89fc-88c4f437ec32",
+              "name": "Possession",
+              "value": "={{ $json.possession }}",
+              "type": "string"
+            },
+            {
+              "id": "d0612d36-023c-4c3f-9441-0f40df72b380",
+              "name": "Auction date",
+              "value": "={{ $json.auctionDate }}",
+              "type": "string"
+            },
+            {
+              "id": "78a781ba-3ef0-4427-a2ed-e47d79648b67",
+              "name": "New or changed",
+              "value": "={{ $json.changeType }}",
+              "type": "string"
+            },
+            {
+              "id": "19e27a2a-b663-4860-a63c-151b2c4f8833",
+              "name": "Link",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1b5b292f-8ca1-4919-8f1e-67a0928adbe4",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "0aee17b6-33aa-416d-a19b-428d131a24d8",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Weekly property auction deals to Google Sheets\n\nEvery Monday: new court, bank and government auction lots near your place, and lots whose price or date changed, scored against similar lots and your budget.\n\n1. **Run auctions-radar** > Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Change the JSON body to your own search.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 280,
+        "width": 440
+      },
+      "id": "691c735b-23cd-45a1-a8d0-20db8a353795",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -340
+      ]
+    }
+  ],
+  "connections": {
+    "Every Monday 7:00": {
+      "main": [
+        [
+          {
+            "node": "Run auctions-radar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run auctions-radar": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

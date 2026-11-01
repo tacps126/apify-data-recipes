@@ -7,7 +7,7 @@ usage, enough to try any tool on real data.
 
 | Tool | Best for | Ready-made |
 |------|----------|-----------|
-| [n8n](https://n8n.io/) | Scheduled pipelines, self-hosting | 2 importable workflows below |
+| [n8n](https://n8n.io/) | Scheduled pipelines, self-hosting | 6 importable workflows below |
 | [Make](https://www.make.com/) | Visual scenarios, no code | Step-by-step below |
 | Zapier | Simple "when X, do Y" | Step-by-step below |
 | [Clay](https://www.clay.com/) | Enriching a lead table row by row | Copy-paste inputs below |
@@ -23,11 +23,15 @@ Import from file*.
 |----------|--------------|
 | [exhibitors-to-google-sheets.json](n8n/exhibitors-to-google-sheets.json) | A trade show's exhibitor list (company, booth, email, phone, website, city, country) into a Google Sheet |
 | [weekly-hiring-signals-to-google-sheets.json](n8n/weekly-hiring-signals-to-google-sheets.json) | Every Monday: which of your target accounts opened roles you sell to, scored per company |
+| [weekly-auction-deals-to-google-sheets.json](n8n/weekly-auction-deals-to-google-sheets.json) | Every Monday: new and changed court, bank and government auction lots near your place, scored against similar lots and your budget |
+| [daily-new-companies-to-google-sheets.json](n8n/daily-new-companies-to-google-sheets.json) | Every morning: companies registered since the last run in the official registers you pick |
+| [weekly-sanctions-screening-to-google-sheets.json](n8n/weekly-sanctions-screening-to-google-sheets.json) | Every Monday: your customers and suppliers screened against six official sanctions lists, one verdict per name |
+| [weekly-channel-transcripts-to-google-sheets.json](n8n/weekly-channel-transcripts-to-google-sheets.json) | Every Friday: transcripts of a YouTube channel's new videos, one row per video |
 
 After import:
 1. Open the **HTTP Request** node > *Credential* > *Create new* > **Header Auth**. Name `Authorization`,
    value `Bearer <your Apify token>`.
-2. Change the JSON body to your show, accounts or keywords.
+2. Change the JSON body to your show, accounts, place, names, channel or keywords.
 3. Open the **Google Sheets** node, connect Google and paste your sheet's URL.
 4. Click *Execute workflow* (or *Activate* for the weekly one).
 

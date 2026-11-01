@@ -1,0 +1,191 @@
+{
+  "name": "Daily new companies to Google Sheets (Apify)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "name": "Every day 8:00",
+      "id": "2227c867-6b3c-463c-bac2-93bc0b50227f",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/tacps126~company-registry/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"mode\": \"new\",\n  \"countries\": [\n    \"FI\",\n    \"NO\",\n    \"EE\"\n  ],\n  \"registeredWithinDays\": 2,\n  \"onlyNew\": true,\n  \"monitorName\": \"n8n-new-companies\",\n  \"maxItems\": 500\n}",
+        "options": {
+          "timeout": 330000
+        }
+      },
+      "id": "6d80dbca-ded2-4fa0-8b76-3bcbcec49c62",
+      "name": "Run company-registry",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e5cdb74-e5b8-40d9-89a2-111fcb19fd18",
+              "name": "Company",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "77267bc8-221b-4fdd-9d19-30f9d82f9340",
+              "name": "Country",
+              "value": "={{ $json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "ef5f387e-d56a-44fa-b2ec-79fde0d7f564",
+              "name": "Registry id",
+              "value": "={{ $json.registryId }}",
+              "type": "string"
+            },
+            {
+              "id": "2418b2dc-b29e-4c0a-85dd-835d1d5a1a4a",
+              "name": "Legal form",
+              "value": "={{ $json.legalForm }}",
+              "type": "string"
+            },
+            {
+              "id": "164f384d-499b-47d0-bf2f-a43429eca602",
+              "name": "Registered",
+              "value": "={{ $json.registeredOn }}",
+              "type": "string"
+            },
+            {
+              "id": "7391c953-2004-488b-bbab-1dec2db94cd6",
+              "name": "Website",
+              "value": "={{ $json.website }}",
+              "type": "string"
+            },
+            {
+              "id": "ee3d1e24-e93b-419e-b3fc-2e59b82d1814",
+              "name": "Register page",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af880afd-015a-4060-8127-0f4b7cdeb6b4",
+      "name": "Pick columns",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "c5419d43-f515-4234-b2bb-deba009c93b9",
+      "name": "Append to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Daily new companies to Google Sheets\n\nEvery morning: companies registered since the last run, straight from the official registers, ready for outreach.\n\n1. **Run company-registry** > Header Auth credential, `Authorization: Bearer <your Apify token>`.\n2. Change the JSON body to your own search.\n3. **Append to Google Sheet** > connect Google, paste your sheet URL.\n4. Activate the workflow.\n\nNo Apify account yet? Free plan: https://console.apify.com/sign-up",
+        "height": 280,
+        "width": 440
+      },
+      "id": "a62155cc-f81c-4b4e-afb2-a2c96bb1ce80",
+      "name": "Read me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -340
+      ]
+    }
+  ],
+  "connections": {
+    "Every day 8:00": {
+      "main": [
+        [
+          {
+            "node": "Run company-registry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run company-registry": {
+      "main": [
+        [
+          {
+            "node": "Pick columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick columns": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
