@@ -14,6 +14,7 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [hiring_signals.py](recipes/hiring_signals.py) | Weekly list of target accounts hiring for given roles | [Hiring Signals](https://apify.com/tacps126/hiring-signals) |
 | [news_alerts.py](recipes/news_alerts.py) | New Google News articles for a query > CSV, with real publisher URLs | [Google News Scraper](https://apify.com/tacps126/google-news) |
 | [contacts_from_websites.py](recipes/contacts_from_websites.py) | Emails, phones and social links from a list of websites | [Website Contact Details](https://apify.com/tacps126/contact-details) |
+| [local_business_leads.py](recipes/local_business_leads.py) | Local businesses by category and city (e.g. dentists in Pune) with e-mails from their own websites > CSV | [Website Contact Details](https://apify.com/tacps126/contact-details) |
 | [jobs_feed.py](recipes/jobs_feed.py) | One normalized job feed from career pages or company names (13 job-board systems) | [Job Board Harvester](https://apify.com/tacps126/jobs-harvester) |
 | [remote_jobs_feed.py](recipes/remote_jobs_feed.py) | Remote jobs open to your countries from company sites and remote-job feeds > CSV | [Remote Jobs Scraper](https://apify.com/tacps126/remote-jobs-scraper) |
 | [reddit_leads.py](recipes/reddit_leads.py) | Reddit posts asking for a tool like yours or an alternative to a competitor, tagged by intent > CSV | [Reddit Lead Finder](https://apify.com/tacps126/reddit-lead-finder) |
