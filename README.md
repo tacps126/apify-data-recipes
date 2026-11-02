@@ -3,7 +3,8 @@
 Small, copy-paste recipes for common data jobs: hiring signals, news alerts, review
 monitoring, lead enrichment, trade-show leads, Reddit buying-intent leads, new-company leads, Shopify store leads, sanctions
 screening, recall alerts, YouTube transcripts, job feeds, research alerts, technology-field comparisons, prediction-market movers,
-closing betting lines, startup funding leads, podcast outreach and property auction deals. Each recipe calls a ready-made
+closing betting lines, startup funding leads, podcast outreach, property auction deals, local business leads, CVE alerts,
+clinical trial sites, new medical practices and importer lookalikes. Each recipe calls a ready-made
 [Apify](https://apify.com) Actor and prints or saves clean JSON/CSV.
 
 You need a free Apify account. Put your API token in `APIFY_TOKEN` (Console > 
@@ -31,6 +32,10 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [funding_leads.py](recipes/funding_leads.py) | Companies that just raised money (SEC Form D) in your states, with founders and executives > CSV | [Startup Funding Rounds](https://apify.com/tacps126/startup-funding) |
 | [podcast_outreach.py](recipes/podcast_outreach.py) | Active podcasts in your niche with the owner's email, for guest pitches and sponsorships > CSV | [Podcast Scraper](https://apify.com/tacps126/podcasts) |
 | [auction_deals.py](recipes/auction_deals.py) | Court, bank and government property auctions near a place, scored against similar lots and your budget > CSV | [Auctions Radar](https://apify.com/tacps126/auctions-radar) |
+| [cve_alerts.py](recipes/cve_alerts.py) | New CVEs for your vendors, exploited-in-the-wild and likeliest-to-be-exploited first > CSV | [CVE Vulnerability Feed](https://apify.com/tacps126/cve-feed) |
+| [trial_sites.py](recipes/trial_sites.py) | Recruiting clinical trials for a condition, one row per study site in your country, with contacts > CSV | [Clinical Trials Scraper](https://apify.com/tacps126/clinical-trials) |
+| [new_practices.py](recipes/new_practices.py) | New US practices of a specialty (recently issued NPIs) with address and phone > CSV | [NPI Registry Scraper](https://apify.com/tacps126/npi-providers) |
+| [importer_lookalikes.py](recipes/importer_lookalikes.py) | US brands that buy from the same factories as the importers you name, from customs bills of lading > CSV | [US Import Records](https://apify.com/tacps126/us-import-records) |
 | [negative_reviews.sh](recipes/negative_reviews.sh) | 1-2★ Trustpilot reviews of competitors (curl only) | [Trustpilot Reviews](https://apify.com/tacps126/trustpilot-reviews) |
 
 ```bash
