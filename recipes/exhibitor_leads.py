@@ -6,7 +6,7 @@
    own website with Website Contact Details.
 3. Writes one CSV with booth, contacts and where each email came from.
 
-Cost: about $0.002 per exhibitor, plus about $0.002 per website where
+Cost: about $0.003 per exhibitor, plus about $0.00175 per website where
 contacts are found (sites with nothing found are free).
 Usage: python exhibitor_leads.py <exhibitor-list link or built-in show id> [max per show]
   e.g. python exhibitor_leads.py "https://ish.messefrankfurt.com/frankfurt/en/exhibitor-search.html"

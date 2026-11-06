@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 1-2★ English Trustpilot reviews for the companies given > reviews.json
-# Cost: about $0.0005 per review. Usage: ./negative_reviews.sh hubspot.com salesforce.com
+# Cost: about $0.00055 per review. Usage: ./negative_reviews.sh hubspot.com salesforce.com
 set -euo pipefail
 : "${APIFY_TOKEN:?Set APIFY_TOKEN}"
 companies=$(printf '"%s",' "${@:-hubspot.com}"); companies="[${companies%,}]"

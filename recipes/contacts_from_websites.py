@@ -1,6 +1,6 @@
 """Emails, phones and social links from a list of websites > contacts.csv.
 
-Cost: about $0.002 per website where contacts are found; nothing found = free.
+Cost: about $0.00175 per website where contacts are found; nothing found = free.
 Usage: python contacts_from_websites.py sites.txt   (one domain or URL per line)
 Use the data within GDPR / CAN-SPAM rules.
 """
