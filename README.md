@@ -12,6 +12,7 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 
 | Recipe | What it does | Actor |
 |--------|--------------|-------|
+| [free_weekly_datasets.py](recipes/free_weekly_datasets.py) | Free, no token: this week's new companies, product recalls and property auctions > CSV, with a keyword filter | [Company Registry](https://apify.com/tacps126/company-registry), [Recalls Radar](https://apify.com/tacps126/recalls-radar), [Auctions Radar](https://apify.com/tacps126/auctions-radar) |
 | [hiring_signals.py](recipes/hiring_signals.py) | Weekly list of target accounts hiring for given roles | [Hiring Signals](https://apify.com/tacps126/hiring-signals) |
 | [news_alerts.py](recipes/news_alerts.py) | New Google News articles for a query > CSV, with real publisher URLs | [Google News Scraper](https://apify.com/tacps126/google-news) |
 | [contacts_from_websites.py](recipes/contacts_from_websites.py) | Emails, phones and social links from a list of websites | [Website Contact Details](https://apify.com/tacps126/contact-details) |
