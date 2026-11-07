@@ -10,7 +10,7 @@ usage, enough to try any tool on real data.
 | [n8n](https://n8n.io/) | Scheduled pipelines, self-hosting | 6 importable workflows below |
 | [Make](https://www.make.com/) | Visual scenarios, no code | Step-by-step below |
 | Zapier | Simple "when X, do Y" | Step-by-step below |
-| [Clay](https://www.clay.com/) | Enriching a lead table row by row | Copy-paste inputs below |
+| [Clay](https://clay.com?via=bec1a7) | Enriching a lead table row by row | Copy-paste inputs below |
 
 ---
 
