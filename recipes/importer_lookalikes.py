@@ -46,5 +46,6 @@ with open("importer_lookalikes.csv", "w", newline="") as f:
         )
 
 for name, p in profiles.items():
-    print(f"{name}: {p.get('shipments12m')} shipments in 12 months ({p.get('shipmentGrowthPct')}% vs the 12 before)")
+    shipments, growth = p.get("shipments12m"), p.get("shipmentGrowthPct")
+    print(f"{name}: {shipments} shipments in 12 months ({growth}% vs the 12 before)")
 print(f"{len(lookalikes)} lookalike importers > importer_lookalikes.csv")

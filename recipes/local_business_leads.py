@@ -27,7 +27,18 @@ rows = run(
 
 with open("local_leads.csv", "w", newline="") as f:
     w = csv.writer(f)
-    w.writerow(["name", "category", "email", "email_on_own_site", "phone", "website", "address", "postcode"])
+    w.writerow(
+        [
+            "name",
+            "category",
+            "email",
+            "email_on_own_site",
+            "phone",
+            "website",
+            "address",
+            "postcode",
+        ]
+    )
     for r in rows:
         w.writerow(
             [
