@@ -1,7 +1,7 @@
 """One normalized job feed from several companies > jobs.csv. Give career-page links
 (the company's own careers page or its job board) or just company names.
 
-Cost: about $0.0016 per job.
+Cost: about $0.0015 per job.
 Usage: python jobs_feed.py
 """
 

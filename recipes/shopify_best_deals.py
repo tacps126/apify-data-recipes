@@ -1,6 +1,6 @@
 """Several Shopify stores > the biggest discounts across all of them, best first > deals.csv.
 
-Cost: about $0.00125 per product returned (only the top results are billed).
+Cost: about $0.0004 per product returned (only the top results are billed).
 Usage: python shopify_best_deals.py stores.txt 50      (one domain per line, how many deals)
 """
 

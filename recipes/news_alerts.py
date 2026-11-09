@@ -1,6 +1,6 @@
 """Google News articles for a query > news.csv, with the publisher's real URL.
 
-Cost: about $0.003 per article.
+Cost: about $0.001 per article.
 Usage: python news_alerts.py "generative AI" [timeframe: 1h|1d|7d]
 """
 

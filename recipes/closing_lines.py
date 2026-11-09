@@ -1,7 +1,7 @@
 """Closing betting lines and how they settled (who covered, over or under, did the favourite
 win) for last week's games > closing_lines.csv. A ready table for backtesting models.
 
-Cost: about $0.003 per game line.
+Cost: about $0.0008 per game line.
 Usage: python closing_lines.py nfl,ncaaf 7      (leagues, days back)
 """
 
