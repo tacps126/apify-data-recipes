@@ -1,7 +1,7 @@
 # apify-data-recipes
 
 Small, copy-paste recipes for common data jobs: hiring signals, news alerts, review
-monitoring, lead enrichment, trade-show leads, Reddit buying-intent leads, new-company leads, Shopify store leads, sanctions
+monitoring, lead enrichment, trade-show leads, new-company leads, Shopify store leads, sanctions
 screening, recall alerts, YouTube transcripts, job feeds, research alerts, technology-field comparisons, prediction-market movers,
 closing betting lines, startup funding leads, podcast outreach, property auction deals, local business leads, CVE alerts,
 clinical trial sites, new medical practices and importer lookalikes. Each recipe calls a ready-made
@@ -19,7 +19,6 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [local_business_leads.py](recipes/local_business_leads.py) | Local businesses by category and city (e.g. dentists in Pune) with e-mails from their own websites > CSV | [Website Contact Details](https://apify.com/tacps126/contact-details) |
 | [jobs_feed.py](recipes/jobs_feed.py) | One normalized job feed from career pages or company names (13 job-board systems) | [Job Board Harvester](https://apify.com/tacps126/jobs-harvester) |
 | [remote_jobs_feed.py](recipes/remote_jobs_feed.py) | Remote jobs open to your countries from company sites and remote-job feeds > CSV | [Remote Jobs Scraper](https://apify.com/tacps126/remote-jobs-scraper) |
-| [reddit_leads.py](recipes/reddit_leads.py) | Reddit posts asking for a tool like yours or an alternative to a competitor, tagged by intent > CSV | [Reddit Lead Finder](https://apify.com/tacps126/reddit-lead-finder) |
 | [new_companies.py](recipes/new_companies.py) | Companies registered in the last days (France, Norway, Finland, Estonia, New York, Colorado, Connecticut, Oregon) by industry code > CSV | [Company Registry](https://apify.com/tacps126/company-registry) |
 | [shopify_store_leads.py](recipes/shopify_store_leads.py) | The Shopify stores in a list of websites, with country, catalog and contacts > CSV | [Shopify Store Analyzer](https://apify.com/tacps126/shopify-store-analyzer) |
 | [shopify_best_deals.py](recipes/shopify_best_deals.py) | The biggest discounts across several Shopify stores, best first > CSV | [Shopify Products Scraper](https://apify.com/tacps126/shopify-products) |
