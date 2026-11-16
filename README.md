@@ -37,6 +37,10 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [trial_sites.py](recipes/trial_sites.py) | Recruiting clinical trials for a condition, one row per study site in your country, with contacts > CSV | [Clinical Trials Scraper](https://apify.com/tacps126/clinical-trials) |
 | [new_practices.py](recipes/new_practices.py) | New US practices of a specialty (recently issued NPIs) with address and phone > CSV | [NPI Registry Scraper](https://apify.com/tacps126/npi-providers) |
 | [importer_lookalikes.py](recipes/importer_lookalikes.py) | US brands that buy from the same factories as the importers you name, from customs bills of lading > CSV | [US Import Records](https://apify.com/tacps126/us-import-records) |
+| [amazon_best_sellers.py](recipes/amazon_best_sellers.py) | Amazon products for your keywords ranked by "bought in past month", with price, discount and rating > CSV | [Amazon Product Scraper](https://apify.com/tacps126/amazon-products) |
+| [facebook_page_contacts.py](recipes/facebook_page_contacts.py) | E-mail, phone, address, website and followers from a list of Facebook Pages > CSV | [Facebook Pages Scraper](https://apify.com/tacps126/facebook-pages) |
+| [hotel_rates.py](recipes/hotel_rates.py) | Google Hotels prices for a place and dates, cheapest good hotels first > CSV | [Google Hotels Scraper](https://apify.com/tacps126/google-hotels) |
+| [threads_mentions.py](recipes/threads_mentions.py) | New Threads posts mentioning your brand or topic, most engaged first; only-new on daily runs > CSV | [Threads Scraper](https://apify.com/tacps126/threads-scraper) |
 | [negative_reviews.sh](recipes/negative_reviews.sh) | 1-2★ Trustpilot reviews of competitors (curl only) | [Trustpilot Reviews](https://apify.com/tacps126/trustpilot-reviews) |
 
 ```bash
