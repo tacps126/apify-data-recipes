@@ -41,6 +41,8 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [facebook_page_contacts.py](recipes/facebook_page_contacts.py) | E-mail, phone, address, website and followers from a list of Facebook Pages > CSV | [Facebook Pages Scraper](https://apify.com/tacps126/facebook-pages) |
 | [hotel_rates.py](recipes/hotel_rates.py) | Google Hotels prices for a place and dates, cheapest good hotels first > CSV | [Google Hotels Scraper](https://apify.com/tacps126/google-hotels) |
 | [threads_mentions.py](recipes/threads_mentions.py) | New Threads posts mentioning your brand or topic, most engaged first; only-new on daily runs > CSV | [Threads Scraper](https://apify.com/tacps126/threads-scraper) |
+| [music_artist_leads.py](recipes/music_artist_leads.py) | Independent SoundCloud and Spotify artists for your genres, best leads first, with listeners, latest release and e-mail > CSV | [Music Artist Scraper](https://apify.com/tacps126/media-profiles) |
+| [creator_outreach.py](recipes/creator_outreach.py) | YouTube and Vimeo creators for your niche with real engagement, best leads first, with e-mail and socials > CSV | [Creator Finder](https://apify.com/tacps126/creator-finder) |
 | [negative_reviews.sh](recipes/negative_reviews.sh) | 1-2★ Trustpilot reviews of competitors (curl only) | [Trustpilot Reviews](https://apify.com/tacps126/trustpilot-reviews) |
 
 ```bash
