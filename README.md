@@ -68,4 +68,7 @@ becomes one n8n item, so you can map fields straight into Sheets, a CRM or a dat
 return normalized fields in one schema; the [exhibitor scraper](https://apify.com/tacps126/exhibition-scraper)
 can also add each organiser's original record (`includeRawData`).
 
-Issues and requests are welcome. If a source you need is missing, open an issue.
+Missing a source, or found a problem? Open an issue on the Actor's page in Apify Store.
+
+All rights reserved; see [LICENSE](LICENSE). You may run and adapt these scripts to call the Actors
+they name.
