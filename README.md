@@ -3,7 +3,7 @@
 Small, copy-paste recipes for common data jobs: hiring signals, news alerts, review
 monitoring, lead enrichment, trade-show leads, new-company leads, Shopify store leads, sanctions
 screening, recall alerts, YouTube transcripts, job feeds, research alerts, technology-field comparisons, prediction-market movers,
-closing betting lines, startup funding leads, podcast outreach, property auction deals, local business leads, CVE alerts,
+closing betting lines, daily stock screens, startup funding leads, podcast outreach, property auction deals, local business leads, CVE alerts,
 clinical trial sites, new medical practices and importer lookalikes. Each recipe calls a ready-made
 [Apify](https://apify.com) Actor and prints or saves clean JSON/CSV.
 
@@ -28,6 +28,7 @@ Settings > API & Integrations). Pricing is per result; every recipe states the c
 | [sanctions_check.py](recipes/sanctions_check.py) | A list of customers or suppliers screened against OFAC, UN, EU, UK, Canada and Swiss sanctions lists > CSV with a verdict per name | [Sanctions Screener](https://apify.com/tacps126/sanctions-screener) |
 | [recall_alerts.py](recipes/recall_alerts.py) | Product recalls and safety alerts for your products, brands or ingredients (FDA, CPSC, Canada, UK, EU) > CSV | [Recalls Radar](https://apify.com/tacps126/recalls-radar) |
 | [youtube_transcripts.py](recipes/youtube_transcripts.py) | Transcripts of a video, playlist, channel or search > one text file per video | [YouTube Transcripts](https://apify.com/tacps126/youtube-transcripts) |
+| [stock_screener.py](recipes/stock_screener.py) | Daily stock screen: verdict, support and resistance, and which ready-made rules (pullback in uptrend, breakout on volume...) are true today with their past hit rate > CSV | [Stock Analyzer](https://apify.com/tacps126/stock-analyzer) |
 | [market_movers.py](recipes/market_movers.py) | Kalshi and Polymarket markets that moved most in 24 hours > CSV | [Prediction Markets](https://apify.com/tacps126/prediction-markets) |
 | [closing_lines.py](recipes/closing_lines.py) | Last week's closing spread, total and moneyline with cover and over/under results > CSV for backtests | [Sports Data](https://apify.com/tacps126/sports-data) |
 | [funding_leads.py](recipes/funding_leads.py) | Companies that just raised money (SEC Form D) in your states, with founders and executives > CSV | [Startup Funding Rounds](https://apify.com/tacps126/startup-funding) |
