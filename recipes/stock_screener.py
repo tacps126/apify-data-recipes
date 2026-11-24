@@ -2,13 +2,14 @@
 resistance, and which ready-made rules are true today, with how often each worked on that stock
 before > screener.csv. Add --only to keep just the tickers where a rule is true now.
 
-Rules to pick from: golden-cross, death-cross, oversold-bounce, overbought-fade, pullback-in-uptrend,
-short-term-dip, breakout-on-volume, breakdown-on-volume, macd-bullish-cross, macd-bearish-cross,
-bollinger-reentry, supertrend-turns-up, supertrend-turns-down, strong-uptrend,
-stretched-below-mean, stretched-above-mean.
+Rules to pick from: golden-cross, death-cross, oversold-bounce, overbought-fade,
+pullback-in-uptrend, short-term-dip, breakout-on-volume, breakdown-on-volume,
+macd-bullish-cross, macd-bearish-cross, bollinger-reentry, supertrend-turns-up,
+supertrend-turns-down, strong-uptrend, stretched-below-mean, stretched-above-mean.
 
 Cost: about $0.002 per ticker returned.
-Usage: python stock_screener.py "AAPL,MSFT,NVDA,SAP.DE" "pullback-in-uptrend,breakout-on-volume" [--only]
+Usage:
+  python stock_screener.py "AAPL,MSFT,NVDA,SAP.DE" "pullback-in-uptrend,breakout-on-volume" [--only]
 """
 
 import csv
@@ -32,8 +33,18 @@ rows = run(
 with open("screener.csv", "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(
-        ["ticker", "price", "verdict", "confidence", "support", "resistance", "rules_true_now",
-         "rule_hit_rate_5d", "base_rate_5d", "answer"]
+        [
+            "ticker",
+            "price",
+            "verdict",
+            "confidence",
+            "support",
+            "resistance",
+            "rules_true_now",
+            "rule_hit_rate_5d",
+            "base_rate_5d",
+            "answer",
+        ]
     )
     for r in rows:
         true_now = r.get("rulesTrueNow") or []
